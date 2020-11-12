@@ -16,5 +16,5 @@ main()
 
   clearScreen(COLOR_BLUE);
 
-  drawChar8x12(20,20, "hello", COLOR_GREEN, COLOR_RED);  
+  drawString8x12(20,20, "Damn", COLOR_GREEN, COLOR_RED);  
 }

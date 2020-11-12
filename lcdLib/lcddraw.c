@@ -94,14 +94,23 @@ void drawString5x7(u_char col, u_char row, char *string,
   }
 }
 
+void drawString8x12(u_char col, u_char row, char*string, u_int fgColorBGR, u_int bgColorBGR)
+{
+  while(*string){
+    drawChar8x12(col, row, *string++, fgColorBGR,bgColorBGR);
+  }
+  
+}
+
 /** 8x12 font - this function draws background pixels
  *
  *
  */
-void drawChar8x12(u_char rcol, u_char rrow, char c, u_int fgColorBGR, u_int bgColorBGR){
+void drawChar8x12(u_char rcol, u_char rrow, char c, u_int fgColorBGR, u_int bgColorBGR)
+{
   u_char col = 0;
   u_char row = 0;
-  u_char bit = 0x01;
+  char bit = 0x80;
   u_char oc = c - 0x20;
   lcd_setArea(rcol, rrow, rcol + 7, rrow + 11);
   while (row < 12) {
@@ -110,9 +119,9 @@ void drawChar8x12(u_char rcol, u_char rrow, char c, u_int fgColorBGR, u_int bgCo
       u_int colorBGR = (holder & bit) ? fgColorBGR : bgColorBGR;
       lcd_writeColor(colorBGR);
      col++;
-     bit <<= 1;
+     bit >>= 1;
     }
-    bit = 0x01;
+    bit = 0x80;
     col = 0;
     row++;
    }
