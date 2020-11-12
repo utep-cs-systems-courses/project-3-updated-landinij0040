@@ -40,7 +40,7 @@ void main()
       clearScreen(COLOR_BLUE);
       fillRectangle(20, rectangleDown, 21,21, COLOR_BLACK);
       if(rectangleDown == 50){// Return rectangleDown to prev value
-	rectangleDown == 15;
+	rectangleDown = 15;
       }
     }
     P1OUT &= ~LED_GREEN;	/* green off */
