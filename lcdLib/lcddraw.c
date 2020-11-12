@@ -94,12 +94,17 @@ void drawString5x7(u_char col, u_char row, char *string,
   }
 }
 
-void drawString8x12(u_char col, u_char row, char*string, u_int fgColorBGR, u_int bgColorBGR)
+void drawString8x12(u_char col,
+		    u_char row,
+		    char *string,
+		    u_int fgColorBGR,
+		    u_int bgColorBGR)
 {
+  char cols = col;
   while(*string){
-    drawChar8x12(col, row, *string++, fgColorBGR,bgColorBGR);
-  }
-  
+    drawChar8x12(cols, row, *string++, fgColorBGR,bgColorBGR);
+    cols += 9;
+  } 
 }
 
 /** 8x12 font - this function draws background pixels
