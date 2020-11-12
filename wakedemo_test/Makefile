@@ -11,9 +11,15 @@ all:wakedemo.elf
 
 #additional rules for files
 wakedemo.elf: ${COMMON_OBJECTS} wakedemo.o wdt_handler.o
-	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd 
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd
+
+wakedemo2.elf: ${COMMON_OBJECTS} wakedemo2.o wdt_handler.o
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd
 
 load: wakedemo.elf
+	msp430loader.sh $^
+
+load2: wakedemo2.elf
 	msp430loader.sh $^
 
 clean:
