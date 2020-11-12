@@ -32,19 +32,15 @@ void main()
   or_sr(0x8);	              /**< GIE (enable interrupts) */
   
   clearScreen(COLOR_BLUE);
-  static int changeRectangle = 1;
+  static int rectangleDown = 15;
   while (1) {			/* forever */
     if (redrawScreen == 1) {
       redrawScreen = 0;
-      switch(changeRectangle){
-      case(1):// rectangle filled
-	fillRectangle(20, 20, 21,21, COLOR_BLACK);
-	changeRectangle = 2;
-	break;
-      case(2):// rectangle outline
-	drawRectOutline(20, 20, 20, 20, COLOR_WHITE);
-	changeRectangle = 1;
-	break;
+      rectangleDown += 5;
+      clearScreen(COLOR_BLUE);
+      fillRectangle(20, rectangleDown, 21,21, COLOR_BLACK);
+      if(rectangleDown == 50){// Return rectangleDown to prev value
+	rectangleDown == 15;
       }
     }
     P1OUT &= ~LED_GREEN;	/* green off */
