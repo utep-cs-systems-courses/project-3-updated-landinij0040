@@ -36,7 +36,7 @@ void main()
   while (1) {			/* forever */
     if (redrawScreen) {
       redrawScreen = 0;
-      drawString5x7(20,20, "hello", fontFgColor, COLOR_BLUE);
+      drawString8x12(30,10, "DROP ME", fontFgColor, COLOR_BLUE);
     }
     P1OUT &= ~LED_GREEN;	/* green off */
     or_sr(0x10);		/**< CPU OFF */
