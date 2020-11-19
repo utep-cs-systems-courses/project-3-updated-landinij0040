@@ -10,6 +10,7 @@ whileLoop:
 	cmp #100,0(r1) 		;if(i == 100) goto end;
 	jz end
 
+	mov #20, r13		;
 	call #drawPixel		;drawPixel(col, row, COLOR_MAGENTA);
 	add.b #1, r12		;col++
 	add #1, 0(r1)		;i++
