@@ -9,7 +9,7 @@ AS              = msp430-elf-gcc -mmcu=${CPU} -c
 
 all: asstest.elf
 
-asstest.elf: ${COMMON_OBJECTS} main.o
+asstest.elf: ${COMMON_OBJECTS} main.o makeClearScreenA.o
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd
 
 load: asstest.elf
