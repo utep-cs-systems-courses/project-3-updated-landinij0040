@@ -2,46 +2,43 @@
 #include <libTimer.h>
 #include "lcdutils.h"
 #include "lcddraw.h"
-
+#include <p2switches.h>
+#include "project.h"
 #define LED_GREEN BIT6             // P1.6
 
-
-short redrawScreen = 1;
-u_int fontFgColor = COLOR_ORANGE;
+int rowChange = 10;     // To make the word drop
+int color = 0xffff;     // Declare color to be white at first
+short redrawScreen = 1; // For the watch dog interrupt
 
 void wdt_c_handler()
 {
   static int secCount = 0;
-
   secCount ++;
-  if (secCount == 10) {		/* once/sec */
+  if (secCount == 10) {	  
     secCount = 0;
-    fontFgColor = (fontFgColor == COLOR_ORANGE) ? COLOR_BLACK : COLOR_ORANGE;
     redrawScreen = 1;
   }
 }
   
 
-void main()
+void drop()
 {
   P1DIR |= LED_GREEN;		/**< Green led on when CPU on */		
-  P1OUT |= LED_GREEN;
-  configureClocks();
-  lcd_init();
-  
+  P1OUT |= LED_GREEN;  
   enableWDTInterrupts();      /**< enable periodic interrupt */
   or_sr(0x8);	              /**< GIE (enable interrupts) */
   
-  static int rowChange = 30;
-  clearScreen(COLOR_BLUE);
   while (1) {			/* forever */
     if (redrawScreen) {
+      color_changes();
       redrawScreen = 0;
-      drawString8x12(30,rowChange, "DROP ME", fontFgColor, COLOR_BLUE);
-      rowChange += 2; // Adding two to make the word go down
-      if(rowChange == 140){
-	fillRectangle(30,30,61,122, COLOR_BLUE);
-	rowChange = 30;
+      
+      if(rowChange == 140){       // Go back to starting position
+	rowChange = 140;          // Row is now back to orginal position
+	drawString8x12(30,rowChange, "DROP ME", color, 1111100000000000);
+      }else{
+	drawString8x12(30,rowChange, "DROP ME", color, 1111100000000000);
+	rowChange += 10;          // Adding ten to make the word go down
       }
     }
     P1OUT &= ~LED_GREEN;	/* green off */

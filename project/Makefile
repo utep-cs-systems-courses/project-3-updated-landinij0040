@@ -16,7 +16,7 @@ wakedemo.elf: ${COMMON_OBJECTS} wakedemo.o wdt_handler.o
 wakedemo2.elf: ${COMMON_OBJECTS} wakedemo2.o wdt_handler.o
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd
 
-buttontest.elf: buttontest.o
+buttontest.elf: ${COMMON_OBJECTS} buttontest.o wakedemo2.o wdt_handler.o colorChanger.o
 	$(CC) $(CFLAGS) ${LDFLAGS} -o $@ $^ -lLcd -lp2sw -lTimer
 
 
@@ -26,7 +26,8 @@ load: wakedemo.elf
 # For what I want to be a project
 load2: wakedemo2.elf
 	msp430loader.sh $^
-load3: buttontest.elf
+# Making sure I can see stuff from different folders
+load3: buttontest.elf 
 	msp430loader.sh $^
 clean:
 	rm -f *.o *.elf
