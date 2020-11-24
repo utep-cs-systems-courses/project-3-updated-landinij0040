@@ -16,7 +16,7 @@ wakedemo.elf: ${COMMON_OBJECTS} wakedemo.o wdt_handler.o
 wakedemo2.elf: ${COMMON_OBJECTS} wakedemo2.o wdt_handler.o
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd
 
-buttontest.elf: ${COMMON_OBJECTS} buttontest.o buzzer.o wakedemo2.o wdt_handler.o colorChanger.o
+buttontest.elf: ${COMMON_OBJECTS} buttontest.o buzzer.o wakedemo2.o wdt_handler.o colorChanger.o switch_state.o
 	$(CC) $(CFLAGS) ${LDFLAGS} -o $@ $^ -lLcd -lp2sw -lTimer
 
 
