@@ -7,6 +7,7 @@
 #include "buzzer.h"
 
 void restart_state();
+
 void button_change(){
   while(1){
     signed char test = 2;              // do nothing
@@ -19,12 +20,7 @@ void button_change(){
     if(test == 2){
        test = (p2sw_read() & 4) ? 2:-2; // if the third button was pushed
     }
-    switch(test){
-    case -2: easter_egg(); break;                    // easter egg
-    case 0: restart_state(); break;    // restart state
-    case 1: drop(); break;             // drop state
-    default: break;                    // do nothing
-    }
+    switch_to_change_state(test);
   }
 }
   
