@@ -7,27 +7,12 @@ LDFLAGS		= -L../lib -L/opt/ti/msp430_gcc/include/
 CC              = msp430-elf-gcc
 AS              = msp430-elf-gcc -mmcu=${CPU} -c
 
-all:wakedemo.elf
+all:project.elf
 
-#additional rules for files
-wakedemo.elf: ${COMMON_OBJECTS} wakedemo.o wdt_handler.o
-	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd
-
-wakedemo2.elf: ${COMMON_OBJECTS} wakedemo2.o wdt_handler.o
-	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd
-
-buttontest.elf: ${COMMON_OBJECTS} buttontest.o buzzer.o wakedemo2.o wdt_handler.o colorChanger.o switch_state.o
+project.elf: ${COMMON_OBJECTS} main.o buzzer.o dropme.o wdt_handler.o colorChanger.o switch_state.o triangle.o
 	$(CC) $(CFLAGS) ${LDFLAGS} -o $@ $^ -lLcd -lp2sw -lTimer
 
-
-# For the original demo
-load: wakedemo.elf
-	msp430loader.sh $^
-# For what I want to be a project
-load2: wakedemo2.elf
-	msp430loader.sh $^
-# Making sure I can see stuff from different folders
-load3: buttontest.elf 
+load: project.elf 
 	msp430loader.sh $^
 clean:
 	rm -f *.o *.elf

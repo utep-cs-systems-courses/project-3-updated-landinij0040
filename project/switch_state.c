@@ -6,7 +6,6 @@
 #include "project.h"
 #include "buzzer.h"
 
-extern int egg = 0;
 void restart_state();
 void button_change(){
   while(1){
@@ -35,15 +34,32 @@ void restart_state(){
   // Redraw the the screen to be blue
   clearScreen(0xf800);
   // redraw the Drop me
-  drawString8x12(30,0,"DROP ME", 0xffff, 0xf800);
+  drawString8x12(35,0,"DROP ME", 0xffff, 0xf800);
   // redraw the triangles
   // redraw the left 
 }
 
 void easter_egg(){
   clearScreen(COLOR_RED);
+  buzzer_set_period(find_note_cycle('G'));
+  
   clearScreen(COLOR_PURPLE);
+  buzzer_set_period(find_note_cycle('F'));
+
+  clearScreen(COLOR_GOLD);
+  buzzer_set_period(find_note_cycle('E'));
+
+  clearScreen(COLOR_DEEP);
+  buzzer_set_period(find_note_cycle('D'));
+  
   clearScreen(COLOR_ORANGE_RED);
+  buzzer_set_period(find_note_cycle('C'));
+  
   clearScreen(COLOR_KHAKI);
+  buzzer_set_period(find_note_cycle('B'));
+
+  clearScreen(COLOR_STEEL_BLUE);
+  buzzer_set_period(find_note_cycle('A'));
   clearScreen(COLOR_BLUE);
+  buzzer_set_period(0);
 }
