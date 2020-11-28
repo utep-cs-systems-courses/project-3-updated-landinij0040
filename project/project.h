@@ -14,8 +14,6 @@ void button_change();
 void restart_state();
 void easter_egg();
 
-
-
 // For changing the state
 void switch_to_change_state(signed char test);
 #endif // project

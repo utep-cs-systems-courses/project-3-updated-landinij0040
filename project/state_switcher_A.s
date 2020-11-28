@@ -4,9 +4,9 @@
 	.global colorScreen
 
 	.text
-	.word neg		; case less than -1
-jt:     .word case0
-	.word case1
+	.word neg		; case less than -1, resets the screen with rainbo colors and music
+jt:     .word case0             ; Init the drop me
+	.word case1		; Drops the drop me
 	
 	.text
 	.global switch_to_change_state

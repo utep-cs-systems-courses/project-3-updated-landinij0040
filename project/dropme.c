@@ -41,11 +41,11 @@ void drop()
 	rowChange = 10;                                       // put row change back to 10 
 	return;
       }else{
-	fillRectangle(9  , rowChange - 10, 13, 10, 0xf800);     // Left side
-	fillRectangle(109, rowChange - 10, 13, 10, 0xf800);     // Right side
-	draw_triangle(15 , rowChange + 7 , 7);                  // Left Triangle
-	draw_triangle(115, rowChange + 7 , 7);                  // Right Triangle
-	drawString8x12(35, rowChange, "DROP ME", color, 0xf800);
+	fillRectangle (9  , rowChange - 10, 13, 10, 0xf800);     // Left side
+	fillRectangle (109, rowChange - 10, 13, 10, 0xf800);     // Right side
+	draw_triangle (15 , rowChange + 7 , 7);                  // Left Triangle
+	draw_triangle (115, rowChange + 7 , 7);                  // Right Triangle
+	drawString8x12(35 , rowChange, "DROP ME", color, 0xf800);
 	buzzer_set_period(500 + rowChange * 5);
 	rowChange += 10;                                        // Adding ten to make the word go down
       }
