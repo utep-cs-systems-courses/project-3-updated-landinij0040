@@ -9,7 +9,7 @@ AS              = msp430-elf-gcc -mmcu=${CPU} -c
 
 all:project.elf
 
-project.elf: ${COMMON_OBJECTS} main.o buzzer.o dropme.o wdt_handler.o colorChanger.o switch_state.o triangle.o state_switcher_A.o music_A.o
+project.elf: ${COMMON_OBJECTS} buzzer.o main.o wdt_handler.o colorChanger.o switch_state.o triangle.o state_switcher_A.o music_A.o
 	$(CC) $(CFLAGS) ${LDFLAGS} -o $@ $^ -lLcd -lp2sw -lTimer
 
 load: project.elf 

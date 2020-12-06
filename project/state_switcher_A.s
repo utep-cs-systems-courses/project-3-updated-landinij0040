@@ -5,7 +5,8 @@
 
 	.text
 	.word neg		; case less than -1, resets the screen with rainbo colors and music
-jt:     .word case0             ; Init the drop me
+jt:
+	.word case0             ; Init the drop me
 	.word case1		; Drops the drop me
 	
 	.text
@@ -19,7 +20,7 @@ switch_to_change_state:		; test < -1
 other_compare:			; test > 1
 	mov #1, r13
 	cmp r12,r13		; 1 - test
-	jc find_normal_cases       ; test <= 1
+	jc find_normal_cases     ; test <= 1
 	jmp end_switch    	; test is bigger than 1 so defualt case, defualt case does nothing
 neg:				; if test is less than -1
 	call #easter_egg
