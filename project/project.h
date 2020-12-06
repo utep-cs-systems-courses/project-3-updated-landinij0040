@@ -1,6 +1,14 @@
 #ifndef project
 #define project
 
+// For the switches
+char SW1 = BIT0;
+char SW2 = BIT1;
+char SW3 = BIT2;
+char SW4 = BIT3;
+char SWITCHES = BIT0 | BIT1 | BIT2 | BIT3;
+
+
 void drop(); // executing the drop
 
 extern int rowChange; // for changing the row of drop me
