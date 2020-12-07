@@ -8,6 +8,7 @@
 #include "buzzer.h"
 #include "switches.h"
 
+
 #define LED_GREEN BIT6  // P1.6
 int rowChange = 10;     // To make the word drop
 int color = 0xffff;     // Declare color to be white at first
@@ -59,6 +60,34 @@ void drop()
   }
 }
 
+
+void easter_egg(){
+  clearScreen(COLOR_RED);
+  buzzer_set_period(note_to_cycle('G'));
+  
+  clearScreen(COLOR_PURPLE);
+  buzzer_set_period(note_to_cycle('F'));
+
+  clearScreen(COLOR_GOLD);
+  buzzer_set_period(note_to_cycle('E'));
+
+  clearScreen(COLOR_DEEP);
+  buzzer_set_period(note_to_cycle('D'));
+  
+  clearScreen(COLOR_ORANGE_RED);
+  buzzer_set_period(note_to_cycle('C'));
+  
+  clearScreen(COLOR_KHAKI);
+  buzzer_set_period(note_to_cycle('B'));
+
+  clearScreen(COLOR_STEEL_BLUE);
+  buzzer_set_period(note_to_cycle('A'));
+  
+  clearScreen(COLOR_BLUE);
+  buzzer_set_period(0);
+}
+
+
 int main()
 {
   P1DIR |= LED_GREEN;		                             // < Green led on when CPU on 		
@@ -76,9 +105,8 @@ int main()
       redrawScreen = 0;                                       // so when the interrupt needs to
       switch(state){
       case -2:       // Rainbow init
-	clearScreen(0xf800);
-	rowChange = 10;
-	buzzer_set_period(0);
+	easter_egg();
+	state = 3;
 	break;
       case 0:        // Init Drop Me
 	drawString8x12(35,0,"DROP ME", 0xffff, 0xf800);
@@ -87,7 +115,7 @@ int main()
 	//clearScreen(0);
 	drop();
 	break;
-      case 2:        // up drop
+      case 2:        // pull drop
 	pull();
 	break;
       default:

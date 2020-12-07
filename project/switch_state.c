@@ -26,28 +26,4 @@ void restart_state(){
 /**
  * Displays rainbow color screen
  */
-void easter_egg(){
-  clearScreen(COLOR_RED);
-  buzzer_set_period(note_to_cycle('G'));
-  
-  clearScreen(COLOR_PURPLE);
-  buzzer_set_period(note_to_cycle('F'));
 
-  clearScreen(COLOR_GOLD);
-  buzzer_set_period(note_to_cycle('E'));
-
-  clearScreen(COLOR_DEEP);
-  buzzer_set_period(note_to_cycle('D'));
-  
-  clearScreen(COLOR_ORANGE_RED);
-  buzzer_set_period(note_to_cycle('C'));
-  
-  clearScreen(COLOR_KHAKI);
-  buzzer_set_period(note_to_cycle('B'));
-
-  clearScreen(COLOR_STEEL_BLUE);
-  buzzer_set_period(note_to_cycle('A'));
-  
-  clearScreen(COLOR_BLUE);
-  buzzer_set_period(0);
-}
