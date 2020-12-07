@@ -25,21 +25,20 @@ switch_init()/* setup switch */
 
 void button_change(){
   char p2val = switch_update_interrupt_sense();              // do nothing
-  signed char test = 2;
-  //signed char test = 3; 
-  //test = (p2val & SW1) ? 3:0;// init the drop
-  //test = (p2val & SW2) ? 3:1;// drop the dropme
-  //test = (p2val & SW3) ? 3:2;// bring up the drop me
-  //test = (p2val & SW$) ? 3:-2;// the rainbow reset
-  //if(test == 2){
-      //    test = (p2sw_read() & 1) ? 2:0;  // if the first button was pushed
-      //}
-    //if(test == 2){
-      //  test = (p2sw_read() & 2) ? 2:1;  // if the second button was pushed
-      //}
-    //   if(test == 2){
-      // test = (p2sw_read() & 4) ? 2:-2; // if the third button was pushed
-    //}
+  signed char test = 3;
+  
+  if(test == 3){
+    test = (p2val & SW1) ? 3:0;// init the drop
+  }
+  if(test == 3){
+    test = (p2val & SW2) ? 3:1;// drop the dropme
+  }
+  if(test == 3){
+    test = (p2val & SW3) ? 3:2;// bring up the drop me
+  }
+  if(test == 3){
+    test = (p2val & SW4) ? 3:-2;// the rainbow reset
+  }
   switch_to_change_state(test);
   
 }
