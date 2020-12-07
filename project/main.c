@@ -26,16 +26,16 @@ void wdt_c_handler()
 
 void pull()
 {
-if(rowChange == 10){                                   // stops the drop call       
+  if(rowChange == 10){                                   // stops the drop call       
     drawString8x12(35,rowChange, "DROP ME", color, 0xf800);
     color = 0xffff;                                       // put color back to white
     rowChange = 10;                                       // put row change back to 10 
   }else{
     fillRectangle (9  , rowChange + 10, 13, 10, 0xf800);     // Left side
     fillRectangle (109, rowChange + 10, 13, 10, 0xf800);     // Right side
-    draw_triangle (15 , rowChange + 7 , 7);                  // Left Triangle
-    draw_triangle (115, rowChange + 7 , 7);                  // Right Triangle
-    drawString8x12(35 , rowChange, "DROP ME", color, 0xf800);
+    up_triangle   (15 , rowChange  , 7);                  // Left Triangle
+    up_triangle   (115, rowChange  , 7);                  // Right Triangle
+    drawString8x12(35 , rowChange, "DROP ME", 0xf800, 0xf800);
     buzzer_set_period(500 + rowChange * 5);
     rowChange -= 10;                                        // Adding ten to make the word go down
   }
@@ -51,8 +51,8 @@ void drop()
   }else{
     fillRectangle (9  , rowChange - 10, 13, 10, 0xf800);     // Left side
     fillRectangle (109, rowChange - 10, 13, 10, 0xf800);     // Right side
-    draw_triangle (15 , rowChange + 7 , 7);                  // Left Triangle
-    draw_triangle (115, rowChange + 7 , 7);                  // Right Triangle
+    down_triangle (15 , rowChange + 7 , 7);                  // Left Triangle
+    down_triangle (115, rowChange + 7 , 7);                  // Right Triangle
     drawString8x12(35 , rowChange, "DROP ME", color, 0xf800);
     buzzer_set_period(500 + rowChange * 5);
     rowChange += 10;                                        // Adding ten to make the word go down
