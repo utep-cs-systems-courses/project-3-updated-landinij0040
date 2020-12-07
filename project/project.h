@@ -2,13 +2,11 @@
 #define project
 
 // For the switches
-char SW1 = BIT0;
-char SW2 = BIT1;
-char SW3 = BIT2;
-char SW4 = BIT3;
-char SWITCHES = BIT0 | BIT1 | BIT2 | BIT3;
-
-
+// #define SW1 0x01
+// #define SW2 0x02
+// #define SW3 0x04
+// #define SW4 0x08
+// #define SWITCHES (SW1 | SW2 | SW3 | SW4)
 void drop(); // executing the drop
 
 extern int rowChange; // for changing the row of drop me
@@ -23,6 +21,7 @@ void restart_state();
 void easter_egg();
 
 // For changing the state
+extern signed char state;
 void switch_to_change_state(signed char test);
 #endif // project
 

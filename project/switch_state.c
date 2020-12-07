@@ -2,30 +2,14 @@
 #include <libTimer.h>
 #include <lcdutils.h>
 #include <lcddraw.h>
-#include <p2switches.h>
+//#include <p2switches.h>
 #include "project.h"
 #include "buzzer.h"
 
 void restart_state();
 
-/**
- * Changes Depending on what button is pressed
- */
-void button_change(){
-  while(1){
-    signed char test = 2;              // do nothing
-    if(test == 2){
-      test = (p2sw_read() & 1) ? 2:0;  // if the first button was pushed
-    }
-    if(test == 2){
-      test = (p2sw_read() & 2) ? 2:1;  // if the second button was pushed
-    }
-    if(test == 2){
-       test = (p2sw_read() & 4) ? 2:-2; // if the third button was pushed
-    }
-    switch_to_change_state(test);
-  }
-}
+
+
 
 /**
  * Restarts the state 
