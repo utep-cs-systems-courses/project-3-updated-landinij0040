@@ -2,12 +2,10 @@
 #include <libTimer.h>
 #include "lcdutils.h"
 #include "lcddraw.h"
-//#include <p2switches.h>
 #include "project.h"
 #include "triangle.h"
 #include "buzzer.h"
 #include "switches.h"
-
 
 #define LED_GREEN BIT6  // P1.6
 int rowChange = 10;     // To make the word drop
@@ -44,11 +42,11 @@ void pull()
 
 void drop()
 {
-  color_changes();                                        // makes DROP ME a darker blue 
-  if(rowChange == 160){                                   // stops the drop call       
+  color_changes();                                           // makes DROP ME a darker blue 
+  if(rowChange == 160){                                      // stops the drop call       
     drawString8x12(35,rowChange, "DROP ME", color, 0xf800);
-    color = 0xffff;                                       // put color back to white
-    rowChange = 160;                                       // put row change back to 10 
+    color = 0xffff;                                          // put color back to white
+    rowChange = 160;                                         // put row change back to 10 
   }else{
     fillRectangle (9  , rowChange - 10, 13, 10, 0xf800);     // Left side
     fillRectangle (109, rowChange - 10, 13, 10, 0xf800);     // Right side
@@ -87,32 +85,31 @@ void easter_egg(){
   buzzer_set_period(0);
 }
 
-
 int main()
 {
-  P1DIR |= LED_GREEN;		                             // < Green led on when CPU on 		
+  P1DIR |= LED_GREEN;      // < Green led on when CPU on 		
   P1OUT |= LED_GREEN;
   configureClocks();
   lcd_init();
   buzzer_init();
-  enableWDTInterrupts();                                     //< enable periodic interrupt 
-  or_sr(0x8);	                                             //< GIE (enable interrupts) 
+  enableWDTInterrupts();  //< enable periodic interrupt 
+  or_sr(0x8);             //< GIE (enable interrupts) 
   switch_init();
   clearScreen(0xf800);
   
   while (1) {			
     if (redrawScreen) {    
-      redrawScreen = 0;                                       // so when the interrupt needs to
+      redrawScreen = 0;// so when the interrupt needs to
       switch(state){
       case -2:       // Rainbow init
 	easter_egg();
+	rowChange = 10;
 	state = 3;
 	break;
       case 0:        // Init Drop Me
 	drawString8x12(35,0,"DROP ME", 0xffff, 0xf800);
 	break;
       case 1:        // down drop
-	//clearScreen(0);
 	drop();
 	break;
       case 2:        // pull drop
